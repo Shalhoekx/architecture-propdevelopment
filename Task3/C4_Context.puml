@@ -1,0 +1,15 @@
+@startuml as_is WarmHouse
+!include Templates/C4_Component.puml
+
+Person(user, "Собственник", "Клиент компании 'ProdDevelopment'")
+
+System(SmartHome, "Мобильное приложение ЖКУ", "Система мобильного управления сервисами ЖКУ")
+System_Ext(DomophoneSystem, "Сиcтема интеллектуального домофона", "Домовой домофон")
+System_Ext(ShlagbaumSystem, "Сиcтема интеллектуального шлагбаума", "Домовой шлагбаум")
+
+Rel(user, SmartHome, "Взаимодействует с системой", "REST API, JSON data format")
+Rel(SmartHome, DomophoneSystem, "Отправляет команды", "REST API, JSON data format")
+Rel(SmartHome, ShlagbaumSystem, "Отправляет команды и настройки", "REST API, JSON data format")
+Rel(DomophoneSystem, SmartHome, "Отправляет уведомления, звонки и видеопоток", "REST API, JSON data format")
+Rel(ShlagbaumSystem, SmartHome, "Отправляет уведомления", "REST API, JSON data format")
+@enduml
