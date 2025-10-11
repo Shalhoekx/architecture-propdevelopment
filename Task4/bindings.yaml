@@ -1,0 +1,28 @@
+# Привязка роли Viewer к пользователю BA
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: viewer-binding-viewer_user
+subjects:
+  - kind: User
+    name: viewer_user
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: viewer_users
+  apiGroup: rbac.authorization.k8s.io
+
+---
+# Привязка роли Editor к пользователю developer
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: editor-binding-dev
+subjects:
+  - kind: User
+    name: developer_user
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: editor
+  apiGroup: rbac.authorization.k8s.io
